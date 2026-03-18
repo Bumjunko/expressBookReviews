@@ -71,12 +71,7 @@ public_users.get('/title/:title',function (req, res) {
 public_users.get('/review/:isbn',function (req, res) {
   const isbn = req.params.isbn;
   if(books[isbn]){
-    let reviews = books[isbn]["reviews"];
-    if(Object.keys(reviews).length > 0){
-      res.send(JSON.stringify(reviews,null,4));
-    } else {
-      return res.status(404).json({message: "No reviews found for this book"});
-    }
+    res.send(JSON.stringify(books[isbn]["reviews"],null,4));
   } else {
     return res.status(404).json({message: "Book not found"});
   }
